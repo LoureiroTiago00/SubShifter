@@ -24,7 +24,6 @@ def createConfigFile():
         userCfg = open("user.txt", "w+")
 
     numLines = numLinesFile(userCfg.name)
-    print("NUMLINES: ",numLines)
     if (numLines == 0):
         userCfg.write("MOVIE DIRECTORIES:\n")
 

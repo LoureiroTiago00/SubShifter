@@ -1,8 +1,9 @@
 import time
 import datetime
-
+import os
 
 # Creates a new file with the subtitles shifted according to the desired value input by the user 
+# Returns the path and name of the newly created file 
 def shiftSub(subtitleName):
     shiftValue = input("How many seconds do you wish to shift? (Either positive or negative):\n")
 
@@ -37,5 +38,17 @@ def shiftSub(subtitleName):
 
         subFile.close()
         shiftedSubFile.close()
+        return "./subs/"+subtitleName+"_SHIFTED"
 
+# Moves the shifted subs file to where the movie is present. Also renames the subs file to copy the movie's name
+# (automatically inserts the subs into the movie)
+def moveShiftedSubs(shiftedFile,moviePathFile):
+    # Removing the video extension from the file name
+    movieFileName = moviePathFile[:-4]
+
+    shiftedFileInfo = str(shiftedFile).split(".")
+
+    # Getting the file extension from the subs file
+    fileExtension = shiftedFileInfo[len(shiftedFileInfo)-1][0:3]
+    os.rename(shiftedFile,str(movieFileName)+"."+fileExtension)
     
