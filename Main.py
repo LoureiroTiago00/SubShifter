@@ -1,4 +1,6 @@
 from SetupDir import *
+from Shift import *
+import sys
 
 print("Welcome to SubShifter\n")
 
@@ -17,6 +19,27 @@ if (listDirectories != None):
         counter = 1
         for y in listSubs:
             print(str(counter) + " - " + y)
+            counter += 1
+
+        validChoice = False
+
+        while (not validChoice):
+            choice = input("Select a subtitle file to shift:\n")
+            try:
+                choice = int(choice)
+                if (choice >= 1 and choice <= len(listSubs)):
+                    validChoice = True
+                else:
+                    print("Invalid choice")
+            except ValueError:
+                print("Invalid choice")
+
+            else:
+                pass
+
+        shiftSub(listSubs[choice-1])
+        print("Subtitles successfully shifted")
+
     else:
         print("There are not subtitles in the subs folder. Please place some there")
 else:
